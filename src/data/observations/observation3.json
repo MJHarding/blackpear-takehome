@@ -1,0 +1,23 @@
+{
+  "resourceType": "Observation",
+  "id": "3",
+  "code": {
+    "coding": [
+      {
+        "system": "http://read.info/ctv3",
+        "code": "XE2pf",
+        "display": "Serum vitamin B12 level"
+      }
+    ],
+    "text": "Serum vitamin B12 level"
+  },
+  "valueQuantity": {
+    "value": 950,
+    "unit": "ng/L"
+  },
+  "issued": "2018-05-31T16:01:40+00:00",
+  "status": "final",
+  "subject": {
+    "reference": "Patient/2"
+  }
+}

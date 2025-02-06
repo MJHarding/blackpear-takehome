@@ -1,0 +1,17 @@
+{
+  "resourceType": "Observation",
+  "id": "4",
+  "code": {
+    "coding": [
+      {
+        "system": "http://read.info/ctv3",
+        "code": "E1130",
+        "display": "Recurrent major depressive episodes, unspecified"
+      }
+    ],
+    "text": "Recurrent major depressive episodes, unspecified"
+  },
+  "issued": "2013-08-04T01:00:00+01:00",
+  "status": "final",
+  "subject": { "reference": "Patient/2" }
+}

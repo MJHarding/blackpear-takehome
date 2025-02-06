@@ -1,0 +1,24 @@
+{
+  "resourceType": "Observation",
+  "status": "final",
+  "id": "1",
+  "code": {
+    "coding": [
+      {
+        "system": "http://read.info/readv2",
+        "code": "F26..",
+        "display": "Migraine"
+      },
+      {
+        "system": "http://snomed.info/sct",
+        "code": "37796009",
+        "display": "Migraine"
+      }
+    ],
+    "text": "Migraine"
+  },
+  "issued": "2015-03-24T00:00:00+00:00",
+  "subject": {
+    "reference": "Patient/1"
+  }
+}

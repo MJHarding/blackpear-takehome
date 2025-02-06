@@ -1,0 +1,41 @@
+{
+  "resourceType": "Patient",
+  "id": "1",
+  "identifier": [
+    {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "1111111111"
+    },
+    {
+      "system": "http://www.e-mis.com/emisopen/MedicalRecord/PatientID",
+      "value": "19529"
+    }
+  ],
+  "name": [
+    {
+      "use": "official",
+      "text": "Mr Zahid Smith",
+      "family": "Smith",
+      "given": ["Zahid"],
+      "prefix": ["Mr"]
+    }
+  ],
+  "telecom": [
+    {
+      "system": "phone",
+      "value": "0700 000 0000",
+      "use": "mobile"
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1946-02-12",
+  "address": [
+    {
+      "use": "home",
+      "text": "Ground Floor Flat, 49 Park Court, Felsham, Milton Keynes, Hertfordshire, W6  9JF",
+      "city": "Milton Keynes",
+      "state": "Hertfordshire",
+      "postalCode": "W6  9JF"
+    }
+  ]
+}

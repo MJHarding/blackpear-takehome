@@ -1,0 +1,17 @@
+{
+  "resourceType": "Observation",
+  "id": "5",
+  "code": {
+    "coding": [
+      {
+        "system": "http://read.info/ctv3",
+        "code": "X00DR",
+        "display": "Stroke of uncertain pathology"
+      }
+    ],
+    "text": "Stroke of uncertain pathology"
+  },
+  "issued": "2014-03-05T00:00:00+00:00",
+  "status": "final",
+  "subject": { "reference": "Patient/2" }
+}
