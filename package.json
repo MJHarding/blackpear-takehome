@@ -1,0 +1,29 @@
+{
+  "name": "blackpear-takehome",
+  "version": "1.0.0",
+  "description": "Node: 23.7.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MJHarding/blackpear-takehome.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MJHarding/blackpear-takehome/issues"
+  },
+  "homepage": "https://github.com/MJHarding/blackpear-takehome#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
