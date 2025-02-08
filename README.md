@@ -1,8 +1,18 @@
-# blackpear-takehome
+# Black Pear Take Home
 
+## Approach
+- Spin up a simple base node app on main, and simulate feature Pull request with the acceptance criteria on a new branch.
 
 ### Dependencies
 Node: 23.7.0
+### Node Setup
+#### Mac
+`nvm use`
+#### Windows
+`nvm use $(cat .\.nvmrc)`
+
+
+
 
 
 # Candidate Task
