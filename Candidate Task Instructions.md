@@ -2,7 +2,7 @@
 
 Create a simple RESTful API that provides data when queried (preferably javascript/typescript otherwise your own choice of language is fine)
 
-## Requirements ##
+## Requirements
 
 User story: as a nurse practitioner I want to be able to view a list of observations for a patient
 

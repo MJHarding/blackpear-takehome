@@ -1,25 +1,28 @@
 # Black Pear Take Home
 
 ## Approach
+
 - Spin up a simple base node app on main, and simulate feature Pull request with the acceptance criteria on a new branch.
 
 ### Dependencies
+
 Node: 23.7.0
+
 ### Node Setup
+
 #### Mac
+
 `nvm use`
+
 #### Windows
+
 `nvm use $(cat .\.nvmrc)`
-
-
-
-
 
 # Candidate Task
 
 Create a simple RESTful API that provides data when queried (preferably javascript/typescript otherwise your own choice of language is fine)
 
-## Requirements ##
+## Requirements
 
 User story: as a nurse practitioner I want to be able to view a list of observations for a patient
 
@@ -37,9 +40,6 @@ User story: as a nurse practitioner I want to be able to view a list of observat
 - Please complete this task to the standard that you set for real work destined for a production environment.
 - Share the code however is easiest for you (zip file, link to a repo, etc)
 
-
-
 ## Approach
 
 Test driven development using MVC architecture for separation of concerns.
-
