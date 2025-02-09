@@ -9,7 +9,7 @@ export class ObservationService {
     this.observationRepository = observationRepository;
   }
 
-  async findObservationsByPatientId(patientId: string): Promise<Observation[]> {
-    return this.observationRepository.searchObservations({ patient: patientId });
+  async findObservationsByPatientId(patientId: FHIRSearchParams): Promise<Observation[]> {
+    return this.observationRepository.searchObservations(patientId);
   }
 }

@@ -1,3 +1,5 @@
+// Basic Non exhaustive validation functions to act as palceholders for real functionality that I would expect to be part of a mature project.
+
 export class ValidationError extends Error {
   constructor(message: string) {
     super(message);
@@ -12,8 +14,10 @@ export class ValidationError extends Error {
  */
 export function validateNhsNumber(nhsNumber?: string): string | undefined {
   if (nhsNumber === undefined) return undefined;
-  // NHS Number validation
+
+  // Basic NHS Number validation REGEX, 10 digits.
   const nhsNumberRegex = /^\d{10}$/;
+
   if (!nhsNumberRegex.test(nhsNumber)) {
     throw new ValidationError('Invalid NHS Number format');
   }
@@ -27,11 +31,13 @@ export function validateNhsNumber(nhsNumber?: string): string | undefined {
  * @returns Validated patient ID
  */
 export function validatePatientId(patientId: string): string {
-  // regex test for positive integer
+  // REGEX test for positive integer
   const positiveIntRegex = /^\d+$/;
+
   if (positiveIntRegex.test(patientId)) {
     throw new ValidationError('Invalid Patient ID');
   }
+
   return patientId;
 }
 
@@ -43,5 +49,6 @@ export function validatePatientId(patientId: string): string {
 export function sanitizeInput(input: any): string | undefined {
   if (input === null || input === undefined) return undefined;
   const sanitizedInput = String(input).trim();
+
   return sanitizedInput || undefined;
 }
