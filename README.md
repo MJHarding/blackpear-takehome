@@ -1,7 +1,12 @@
 
-# FHIR Patient Management API
+# Black Pear Take Home - FHIR Patient Management API
+## Approach
+- Spin up a simple node API on main branch following a basic 3 tier architecture for clear separation of concerns. Simulate feature Pull request with the acceptance criteria, discussion points etc on a new branch.
 
-## Architecture Overview: Modified MVC with Dependency Injection
+## Architecture Overview: Modified MVC with Dependency Injection and Versioned API URLs
+
+### Why Versioned API URL instead of header versioning? 
+App is a small test API. In my opinion this simple approach works best for this case, but in a production app could lead to cluttered URLs, and would require work from clients to switch to new URLs should a new version be released.
 
 ### Why This Architecture?
 
@@ -135,25 +140,12 @@ app.use('/api', exampleRoutes);
 
 ### Contribution Guidelines
 
-1. Follow Existing Patterns
-   - Maintain consistent code style
-   - Use dependency injection
-   - Implement FHIR-compliant responses
+1. Follow Existing Patterns and standards, such as FHIR. 
 
-2. Testing
-   - Write unit tests for new components
-   - Ensure 100% test coverage
-   - Use Jest testing framework
+2. Write unit tests using Jest, ensure core functionality coverage
 
-3. Documentation
-   - Update README with new endpoint details
-   - Add inline code comments
-   - Explain complex logic
+3. Document new functions or endpoints
 
-4. Code Review Process
-   - Create pull requests
-   - Ensure CI/CD pipeline passes
-   - Get approval from maintainers
 
 ## Development Setup
 
@@ -179,48 +171,6 @@ npm test
 
 While this architecture is suitable for POC:
 - Consider microservices for complex, high-load scenarios
-- Evaluate performance bottlenecks
+- Evaluate performance bottlenecks via load testing against expected traffic patterns
 - Plan for potential architectural evolution
 
-
-# Black Pear Take Home
-
-## Approach
-
-- Spin up a simple base node app on main, and simulate feature Pull request with the acceptance criteria on a new branch.
-
-### Dependencies
-
-Node: 23.7.0
-
-### Node Setup
-
-#### Mac
-
-`nvm use`
-
-#### Windows
-
-`nvm use $(cat .\.nvmrc)`
-
-# Candidate Task
-
-Create a simple RESTful API that provides data when queried (preferably javascript/typescript otherwise your own choice of language is fine)
-
-## Requirements
-
-User story: as a nurse practitioner I want to be able to view a list of observations for a patient
-
-- The API should be able to retrieve patient(s) using NHS number or surname
-- The API should be able to retrieve all observations for a patient ID
-
-**Notes**
-
-- Sample data included are [FHIR](http://hl7.org/fhir/) resources (a standard for health care data exchange)
-  - [Patient](http://www.hl7.org/implement/standards/fhir/patient.html)
-  - [Observation](http://www.hl7.org/implement/standards/fhir/observation.html)
-- Ideally requests should follow FHIR [Search](http://hl7.org/fhir/http.html#search) requirements and the response should be a FHIR [Bundle](http://hl7.org/fhir/bundle.html) resource, but this is not a requirement of this task
-- The `subject` property in the Observation resource is a reference to the Patient resource `id`
-- Acceptance testing could be via Postman, simple curl commands or any approach that suits you.
-- Please complete this task to the standard that you set for real work destined for a production environment.
-- Share the code however is easiest for you (zip file, link to a repo, etc)
