@@ -2,9 +2,9 @@
 
 ## Approach
 
-- Spin up a simple node API on main branch following a basic 3 tier architecture for clear separation of concerns. Simulate feature Pull request with the acceptance criteria, discussion points etc on a new branch.
+- Spin up a simple node API on main branch following a basic 3 tier architecture for clear separation of concerns. Simulate feature Pull request with the acceptance criteria, discussion points etc on a new branch. Due to personal time constraints I focused on funtionality over a full TDD approach with 100% coverage, which is how I would tackle this in a work environment. A basic jest test for Observation service has been written as an example of how tests could be added. 
 
-## Architecture Overview: Modified MVC with Dependency Injection and Versioned API URLs
+## Architecture Overview: Layered Architecture and Versioned API URLs
 
 ### Why Versioned API URL instead of header versioning?
 
