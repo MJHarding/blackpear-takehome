@@ -16,7 +16,6 @@ export class ObservationController {
   }
 
   getObservationsByPatientId = async (req: Request, res: Response) => {
-
     if (!req.query || Object.keys(req.query).length === 0) {
       return res
         .status(400)

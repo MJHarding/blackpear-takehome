@@ -5,7 +5,6 @@ import { FHIRSearchParams } from '../models/fhir.model';
 
 const dataDir = path.resolve(__dirname, '../data/observations');
 
-
 export class ObservationRepository {
   private observations: Observation[];
 

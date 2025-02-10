@@ -26,7 +26,6 @@ export class PatientController {
         searchParams['identifier'] = validateNhsNumber(sanitizedIdentifier);
       }
 
-      // Validate and sanitize family name
       if (req.query.family !== undefined) {
         const familyValidation = validateFHIRQueryParam(req.query.family, 'Family');
         if (!familyValidation.isValid) {
@@ -36,10 +35,7 @@ export class PatientController {
         searchParams['family'] = sanitizeInput(familyValidation.value);
       }
 
-      // Perform query with validated inputs
       const patients = await this.patientService.findPatients(searchParams);
-
-      // Return FHIR bundle
       res.json(createFHIRBundle(patients));
     } catch (error) {
       handleFHIRError(res, error);
