@@ -1,3 +1,7 @@
+export interface FHIRSearchParams {
+  [key: string]: string | string[] | number | undefined;
+}
+
 export interface FHIRBundle<T> {
   resourceType: 'Bundle';
   type: 'searchset';
@@ -11,15 +15,12 @@ export interface FHIRBundle<T> {
   }>;
 }
 
-export interface FHIRSearchParams {
-  [key: string]: string | string[] | undefined;
-}
-
 export function createFHIRBundle<T>(resources: T[]): FHIRBundle<T> {
-  return {
+  const bundle: FHIRBundle<T> = {
     resourceType: 'Bundle',
     type: 'searchset',
     total: resources.length,
     entry: resources.map((resource) => ({ resource })),
   };
+  return bundle;
 }

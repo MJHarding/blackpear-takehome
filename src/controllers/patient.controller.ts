@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { PatientService } from '../services/patient.service';
-import { createFHIRBundle } from '../models/fhir.model';
-import { validateNhsNumber, sanitizeInput, ValidationError } from '../utils/validation';
+import { createFHIRBundle, FHIRSearchParams } from '../models/fhir.model';
+import { sanitizeInput, validateNhsNumber } from '../utils/validation';
+import { validateFHIRQueryParam, handleFHIRError } from '../utils/fhir-helpers';
 
 export class PatientController {
   private patientService: PatientService;
@@ -12,40 +13,27 @@ export class PatientController {
 
   getPatients = async (req: Request, res: Response) => {
     try {
-      // Sanitize and validate inputs
-      const searchParams: any = {};
+      const searchParams: FHIRSearchParams = {};
 
+      // Validate and sanitize identifier (NHS number)
       if (req.query.identifier !== undefined) {
-        if (typeof req.query.identifier !== 'string') {
-          return res.status(400).json({
-            resourceType: 'OperationOutcome',
-            issue: [
-              {
-                severity: 'error',
-                code: 'invalid',
-                diagnostics: 'Identifier must be a string',
-              },
-            ],
-          });
+        const identifierValidation = validateFHIRQueryParam(req.query.identifier, 'Identifier');
+        if (!identifierValidation.isValid) {
+          return res.status(400).json(identifierValidation.error);
         }
-        const nhsNumberStr = sanitizeInput(req.query.identifier);
-        searchParams['identifier'] = validateNhsNumber(nhsNumberStr);
+
+        const sanitizedIdentifier = sanitizeInput(identifierValidation.value);
+        searchParams['identifier'] = validateNhsNumber(sanitizedIdentifier);
       }
 
+      // Validate and sanitize family name
       if (req.query.family !== undefined) {
-        if (typeof req.query.family !== 'string') {
-          return res.status(400).json({
-            resourceType: 'OperationOutcome',
-            issue: [
-              {
-                severity: 'error',
-                code: 'invalid',
-                diagnostics: 'Family name must be a string',
-              },
-            ],
-          });
+        const familyValidation = validateFHIRQueryParam(req.query.family, 'Family');
+        if (!familyValidation.isValid) {
+          return res.status(400).json(familyValidation.error);
         }
-        searchParams['family'] = sanitizeInput(req.query.family);
+
+        searchParams['family'] = sanitizeInput(familyValidation.value);
       }
 
       // Perform query with validated inputs
@@ -54,31 +42,7 @@ export class PatientController {
       // Return FHIR bundle
       res.json(createFHIRBundle(patients));
     } catch (error) {
-      // Differentiate between validation and server errors
-      if (error instanceof ValidationError) {
-        return res.status(400).json({
-          resourceType: 'OperationOutcome',
-          issue: [
-            {
-              severity: 'error',
-              code: 'invalid',
-              diagnostics: error.message,
-            },
-          ],
-        });
-      }
-
-      console.error('Patient search error:', error);
-      res.status(500).json({
-        resourceType: 'OperationOutcome',
-        issue: [
-          {
-            severity: 'error',
-            code: 'exception',
-            diagnostics: 'Internal Server Error',
-          },
-        ],
-      });
+      handleFHIRError(res, error);
     }
   };
 }

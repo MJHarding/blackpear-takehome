@@ -48,7 +48,8 @@ export function validateFHIRQueryParam(
     issue: FHIROperationOutcomeIssue[];
   };
 } {
-  if (param === undefined) {
+
+  if (param === undefined || param === '') {
     return {
       isValid: false,
       error: createFHIROperationOutcome('error', 'invalid', `${paramName} parameter is required`),

@@ -1,6 +1,6 @@
+import { FHIRSearchParams } from '../models/fhir.model';
 import { Observation } from '../models/observation.model';
 import { ObservationRepository } from '../repositories/observation.repository';
-import { FHIRSearchParams } from '../models/fhir.model';
 
 export class ObservationService {
   private observationRepository: ObservationRepository;

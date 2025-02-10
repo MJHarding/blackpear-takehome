@@ -16,45 +16,25 @@ export class ObservationController {
   }
 
   getObservationsByPatientId = async (req: Request, res: Response) => {
-    // Early return if query is undefined
-    if (req.query === undefined) {
+
+    if (!req.query || Object.keys(req.query).length === 0) {
       return res
         .status(400)
         .json(createFHIROperationOutcome('error', 'invalid', 'No query parameters provided'));
     }
 
-    // Early return if patient parameter is undefined
-    if (req.query.patient === undefined) {
-      return res
-        .status(400)
-        .json(createFHIROperationOutcome('error', 'invalid', 'Patient parameter is required'));
-    }
-
     try {
-      // Validate patient parameter type
-      const patientValidation = validateFHIRQueryParam(req.query.patient, 'Patient');
-      if (!patientValidation.isValid) {
-        return res.status(400).json(patientValidation.error);
+      const patient = validateFHIRQueryParam(req.query.patient, 'Patient');
+      if (!patient.isValid) {
+        return res.status(400).json(patient.error);
       }
 
-      // Sanitize patient ID
-      const patientId = patientValidation.value;
-      const sanitizedPatientId = sanitizeInput(patientId);
+      // Use helmet or some some core service validation function in production
+      const sanitizedPatientId = sanitizeInput(patient.value);
+      const observations = await this.observationService.findObservationsByPatientId({
+        patient: sanitizedPatientId,
+      });
 
-      // Validate sanitized patient ID
-      if (!sanitizedPatientId) {
-        return res
-          .status(400)
-          .json(
-            createFHIROperationOutcome('error', 'invalid', 'Invalid patient ID after sanitization'),
-          );
-      }
-
-      // Perform query with validated patient ID
-      const observations =
-        await this.observationService.findObservationsByPatientId(sanitizedPatientId);
-
-      // Return FHIR bundle
       res.json(createFHIRBundle(observations));
     } catch (error) {
       handleFHIRError(res, error);
