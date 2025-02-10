@@ -2,13 +2,13 @@
 
 ## Approach
 
-- Spin up a simple node API on main branch following a basic 3 tier architecture for clear separation of concerns. Simulate feature Pull request with the acceptance criteria, discussion points etc on a new branch. Due to personal time constraints I focused on funtionality over a full TDD approach with 100% coverage, which is how I would tackle this in a work environment. A basic jest test for Observation service has been written as an example of how tests could be added. 
+- Spin up a simple node API on main branch following a basic 3 tier architecture for clear separation of concerns. Simulate feature Pull request with the acceptance criteria, discussion points etc on a new branch. Due to personal time constraints I focused on funtionality over a full TDD approach with 100% coverage, which is how I would tackle this in a work environment. A basic jest test for Observation service has been written as an example of how tests could be added.
 
 ## Architecture Overview: Layered Architecture and Versioned API URLs
 
 ### Why Versioned API URL instead of header versioning?
 
-App is a small test API. In my opinion this simple approach works best for this case, but in a production app could lead to cluttered URLs, and would require work from clients to switch to new URLs should a new version be released.
+App is a small test API and doesnt necessitate versioned API routes. However, in my opinion this simple approach works best for this case and implements some form of good practice that would be required in production application. However using this in a production app could lead to cluttered URLs, and would require work from clients to switch to new URLs should a new version be released.
 
 ### Why This Architecture?
 
@@ -173,6 +173,7 @@ app.use('/api', exampleRoutes);
 
 ```bash
 git clone <repository-url>
+nvm use
 npm install
 npm run build
 npm start
@@ -188,6 +189,6 @@ npm test
 
 While this architecture is suitable for POC:
 
-- Consider microservices for complex, high-load scenarios
+- I would consider microservices for complex, high-load scenarios
 - Evaluate performance bottlenecks via load testing against expected traffic patterns
 - Plan for potential architectural evolution
